@@ -22,7 +22,9 @@ const renderWatermarkDataURL = (canvas, settings, data) => {
 
   const renderText = display_text.trim() !== "";
   const { username, timestamp } = data;
-  const okToRender = helperContext().siteSettings.title.match(include_if_title_matches)
+  const container = Discourse.__container__;
+  const siteSettings = container.lookup("site-settings:main");
+  const okToRender = siteSettings.title.match(include_if_title_matches)
 
   if (!okToRender || !(renderText || username || timestamp)) return;
 
